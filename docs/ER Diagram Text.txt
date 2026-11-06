@@ -1,0 +1,44 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+
+Table Members {
+  id integer [primary key]
+  first_name string
+  last_name string
+  role string
+}
+
+
+Table Books {
+  id integer [primary key]
+  title string
+  year string
+}
+
+Table Loans {
+  id integer [primary key]
+  loan_date timestamp
+  due_date timestamp
+  returned_date timestamp
+  book_id integer [ref:> Books.id]
+  member_id integer [ref:> Members.id]
+}
+
+Table Authors {
+  id integer [primary key]
+  author_name string
+
+}
+
+Table books_author{
+  book_id integer [ref:> Books.id]
+  author_id integer [ref:> Authors.id]
+}
+
+Table Reservations {
+  reservation_id integer [primary key]
+  reservation_date text [not null]
+  book_id integer [not null, ref: > Books.id]
+  member_id integer [not null, ref: > Members.id]
+}
